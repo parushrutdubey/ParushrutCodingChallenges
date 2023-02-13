@@ -14,6 +14,7 @@
             <Label text="Project Grade" />
             <TextField fx:id="projectTextField" />
             <Label text="\%" />
+            <Label fx:id="projectErrorLabel" text="Error message goes here" textFill="RED"/>
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">

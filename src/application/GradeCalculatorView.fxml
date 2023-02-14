@@ -14,6 +14,7 @@
             <Label text="Project Grade" />
             <TextField fx:id="projectTextField" />
             <Label text="\%" />
+            <Label text="This should cause a merge conflict"/>
          </children>
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0">

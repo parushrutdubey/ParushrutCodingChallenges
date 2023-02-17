@@ -71,6 +71,13 @@ public class GradeCalculatorController {
     }
     
     @FXML
+    /**
+     * This will calculate the value of course grade after the button is pressed. It will pass the value
+     * of the project grade to the function getProjectGrade for verification of it being a decimal and then 
+     * on returning will add it to the course grade variable on the basis it is valid or not. The Coding Challenge
+     * and quiz grades are calculated normally based on the scores in each of those components. 
+     * @param event is the starter for running the code on pressing the button in the window of the GUI
+     */
     void calculateGrade(ActionEvent event) {
    
     	projectErrorLabel.setText("");

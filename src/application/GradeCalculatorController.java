@@ -37,16 +37,17 @@ public class GradeCalculatorController {
     double getProjectGrade(String valueEntered)
     {
     	boolean validProjectGrade=true;
+    	int point=0;//used to count the number of decimal points
     	for(char c: valueEntered.toCharArray())
     		//This is for checking if the decimal entered is valid or not
     	{
-    		if(!Character.isDigit(c)&& c!='.')
+    		if(!Character.isDigit(c)&& c!='.'&& c!='-')
     			//Check if character is a digit
     		{
     			validProjectGrade=false;
     			projectErrorLabel.setText("Do not use "+c+" in a project grade. Make sure it is a number");
     		}
-    		int point=1;//used to count the number of decimal points
+    		
     		if(c=='.')
     		{
     			point=point+1;

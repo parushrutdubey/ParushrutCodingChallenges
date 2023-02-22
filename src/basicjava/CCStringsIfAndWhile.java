@@ -16,13 +16,28 @@ public class CCStringsIfAndWhile {
 	}
 
 	public static int count(String s, String p) {
-		
-
+	
 		return 0;
 	}
-
+/**
+ * This method will perform operations on a number entered by a user to find the smallest digit
+ * @param num is the number entered by the user to find the smallest digit in 
+ * @return will return a value of the smallest digit of the number entered by the user previously
+ */
 	public static int smallestDigit(int num) {
-		return 0;
+		if(num<0)
+			num=num*-1;
+		int test,smallest=num%10;
+		
+		while(num>0)
+		{
+			test=num%10;
+			if(test<smallest) {
+				 smallest=test;
+			}
+			num=num/10;
+		}
+		return smallest;
 	}
 
 }

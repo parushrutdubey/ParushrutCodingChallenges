@@ -14,10 +14,31 @@ public class CCStringsIfAndWhile {
 			testing=false;
 		return testing;
 	}
-
-	public static int count(String s, String p) {
+/**
+ * This function counts the number of times a letter in the second argument appears in the original argument.
+ * @param str It is the first sentence entered by the user to count the letters of 
+ * @param chars It is the second sentence entered by the user to compare to the first sentence and count the letters which are in both strings
+ * @return will return the value of the number of letters in the first sentence similar to the one in the first sentence.
+ */
+	public static int count(String str, String chars) {
+		int count=0;
+		String s1=str.toLowerCase();
+		String s2=chars.toLowerCase();
+		int l1=s1.length(),l2=s2.length();
+		int i = 0;
+		while (i < l1) {
+		  int j = 0;
+		  while (j < l2) {
+		    if (s1.charAt(i) == s2.charAt(j)) {
+		      count = count + 1;
+		    }
+		    j = j + 1;
+		  }
+		  i = i + 1;
+		}
+		
 	
-		return 0;
+		return count;
 	}
 /**
  * This method will perform operations on a number entered by a user to find the smallest digit

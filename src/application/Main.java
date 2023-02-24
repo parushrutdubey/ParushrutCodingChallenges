@@ -17,8 +17,10 @@ public class Main extends Application {
 			
 			FXMLLoader loader=new FXMLLoader();
 			VBox root= loader.load(new FileInputStream("src/application/GradeCalculatorView.fxml"));
-			Scene scene = new Scene(root,700,500);
+			GradeCalculatorController controller=(GradeCalculatorController)loader.getController();
+			controller.applicationStage=primaryStage;
 			
+			Scene scene = new Scene(root,900,500);
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Parushrut's Grade Calculator");
 			primaryStage.show();

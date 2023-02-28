@@ -1,5 +1,7 @@
 package basicjava;
 
+import java.util.Arrays;
+
 public class CCArrays {
 	/**
 	 * This method checks the character array and replaces a specific character with another specific character
@@ -18,26 +20,14 @@ public class CCArrays {
 				charArray[i]=replaceWith;
 		}
 	}
+	
 	/**
 	 * This method sorts the arrays in Alphabetical order regardless of case of letters.
 	 * @param strArray is the array of sentences which have to be sorted
 	 */
 	public static void sortAlphabetic(String[] strArray)
 	{
-		int i,j;
-		String s;
-		for(i=0;i<strArray.length;i++)//By using Bubble Sort technique
-		{
-			for(j=i+1;j<strArray.length;j++)
-			{
-				if(strArray[i].compareToIgnoreCase(strArray[j])>0)//compareToIgnoreCase is used rather than compareTo as we want it to sort only based off the alphabets and not the case which would depend on the ASCII number of the letter
-				{
-					s=strArray[i];
-					strArray[i]=strArray[j];
-					strArray[j]=s;
-				}
-			}
-		}
+        Arrays.sort(strArray, String.CASE_INSENSITIVE_ORDER);// The Case Insensitive Order function sorts the array without taking the case into consideration 
 	}
 
 }

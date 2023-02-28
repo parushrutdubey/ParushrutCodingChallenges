@@ -1,13 +1,23 @@
 package application;
 
+
+
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
 
 public class GradeCalculatorController {
+	Stage applicationStage;
 
     @FXML
     private TextField projectTextField;
@@ -19,13 +29,141 @@ public class GradeCalculatorController {
     private ChoiceBox<Integer> compulsoryCoding;
 
     @FXML
-    private Slider quizSlider;
+    private ChoiceBox<Integer> compulsoryQuizzesCompletedChoicebox;
+    
+    @FXML
+    private ChoiceBox<Integer> optionalQuizzesCompletedChoicebox;
 
     @FXML
     private Label courseGradeLabel;
     
     @FXML
     private Label projectErrorLabel;
+    
+    @FXML
+    private Label compulsoryAvg;
+    
+    @FXML
+    private Label optionalAvg;
+    
+    @FXML
+    /**
+     * this method sets the window to accept the value of compulsory coding challenges from the user
+     * @param compEnterQuizGradeEvent is the action of the button which brings us to another window to enter compulsory coding challenge values
+     */
+    void getCompQuizGrades(ActionEvent compEnterQuizGradeEvent)
+    {
+    	Scene mainScene=applicationStage.getScene();
+    	
+    	int compNum=compulsoryQuizzesCompletedChoicebox.getValue();
+    	int compRows=0;
+    	VBox compQuizGradeContainer=new VBox();
+    	
+    	ArrayList<TextField> compQuizGradeTextfields=new ArrayList<TextField>();
+    	while(compRows<compNum) {
+    	
+    	HBox compRowContainer=new HBox();
+    	Label compQuizGradeLabel=new Label("Quiz Grade");
+    	TextField compQuizGradeTextfield=new TextField();
+    	compQuizGradeTextfields.add(compQuizGradeTextfield);
+    	
+    	compQuizGradeContainer.getChildren().addAll(compQuizGradeLabel,compQuizGradeTextfield);
+    	compRows++;
+    	
+    	compQuizGradeContainer.getChildren().add(compRowContainer);
+    	}
+    	Button compDoneButton=new Button("Done");
+    	compDoneButton.setOnAction(compDoneEvent -> calculateCompAverageQuizGrade(mainScene,compQuizGradeTextfields));
+    	compQuizGradeContainer.getChildren().addAll(compDoneButton);
+
+    	
+    	Scene compQuizGradesScene=new Scene(compQuizGradeContainer);
+    	applicationStage.setScene(compQuizGradesScene);
+    }
+    
+    
+    double CompQuizAvg=0.0;
+    /**
+     * This method is there to calculate the average value of compulsory coding challenges.
+     * @param mainScene is the main window of the Grade Calculator
+     * @param compQuizGradeTextfields is the field where the user will input the values of compulsory coding challenges 
+     */
+    void calculateCompAverageQuizGrade(Scene mainScene,ArrayList<TextField> compQuizGradeTextfields)
+    {
+    	applicationStage.setScene(mainScene);
+    	CompQuizAvg=0.0;
+    	for(TextField compQuizGradeTextfield: compQuizGradeTextfields) {
+    			CompQuizAvg=Double.parseDouble(compQuizGradeTextfield.getText())+CompQuizAvg;
+    	}
+    
+    	CompQuizAvg=CompQuizAvg/15;
+    	compulsoryAvg.setText("Compulsory quiz grade is "+CompQuizAvg+"/10");
+    	
+    }
+    /**
+     * This method creates the window in which we will accept the optional quiz values.
+     * @param compEnterQuizGradeEvent is the action of the button which brings us to another window to enter compulsory coding challenge values
+     */
+    
+    @FXML
+    void getOptQuizGrades(ActionEvent compEnterQuizGradeEvent)
+    {
+    	Scene mainScene=applicationStage.getScene();
+    	
+    	int optNum=optionalQuizzesCompletedChoicebox.getValue();
+    	int optRows=0;
+    	VBox optQuizGradeContainer=new VBox();
+    	ArrayList<TextField> optQuizGradeTextfields=new ArrayList<TextField>();
+    	int checking=0;//This is present to ensure that even if the user has grades of more than 5 optional, he will enter only the best 5
+    	if(optNum>5)
+    		checking=5;
+    	else
+    		checking=optNum;
+    	while(optRows<checking) {
+    
+    	HBox optRowContainer=new HBox();
+    	Label optQuizGradeLabel=new Label("Quiz Grade");
+    	TextField optQuizGradeTextfield=new TextField();
+    	optQuizGradeTextfields.add(optQuizGradeTextfield);
+
+    	
+    	
+    	optQuizGradeContainer.getChildren().addAll(optQuizGradeLabel,optQuizGradeTextfield);
+    	optRows++;
+    	
+    	optQuizGradeContainer.getChildren().add(optRowContainer);
+
+    	}
+    	
+    	Button optDoneButton=new Button("Done");
+    	optDoneButton.setOnAction(optDoneEvent -> calculateOptAverageQuizGrade(mainScene,optQuizGradeTextfields));
+    	optQuizGradeContainer.getChildren().addAll(optDoneButton);
+    	
+
+    	Scene optQuizGradesScene=new Scene(optQuizGradeContainer);
+    	applicationStage.setScene(optQuizGradesScene);
+    }
+    
+    
+    double OptQuizAvg=0.0;
+    /**
+     * This is a function which is present in a new window to input the optional quiz scores and find the avg 
+     * @param mainScene This is the main window of the program
+     * @param optQuizGradeTextfields this is another window where the user will enter the optional quiz grades to calculate the avg quiz score
+     */
+    void calculateOptAverageQuizGrade(Scene mainScene,ArrayList<TextField> optQuizGradeTextfields)
+    {
+    	applicationStage.setScene(mainScene);
+    	OptQuizAvg=0.0;
+    	for(TextField optQuizGradeTextfield: optQuizGradeTextfields) {
+    	OptQuizAvg=Double.parseDouble(optQuizGradeTextfield.getText())+OptQuizAvg;
+    	}
+    	
+    	OptQuizAvg=OptQuizAvg/5;
+    	optionalAvg.setText("Optional Quiz Average is "+OptQuizAvg+"/10");
+    	
+    }
+    
     
     /**
      * Convert the value entered to a double value. This method will verify that the value entered is a valid 
@@ -70,6 +208,8 @@ public class GradeCalculatorController {
     	
     	return projectGrade;
     }
+        
+    
     
     @FXML
     /**
@@ -107,10 +247,11 @@ public class GradeCalculatorController {
     	System.out.println(" Course Grade so far "+coursegrade);
     	
     			
-    	double quizGrade= quizSlider.getValue();
-    	double quizweight=quizGrade*2.5;
-    	coursegrade=quizweight+coursegrade;
-    	System.out.println("Quiz Grade "+quizGrade+" Course Grade so far "+coursegrade);
+    	//double comulsoryQuiz=compulsoryQuizzesCompletedChoicebox.getValue();
+    	//double optionalQuiz=optionalQuizzesCompletedChoicebox.getValue();
+    	double quiztotal= (CompQuizAvg*1.875)+(OptQuizAvg*0.625);
+    	coursegrade=quiztotal+coursegrade;
+    	System.out.println("Quiz Grade "+quiztotal+" Course Grade so far "+coursegrade);
 
     	courseGradeLabel.setText("Your course grade is "+coursegrade);
     	//System.out.println("Button was clicked");

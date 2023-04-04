@@ -87,9 +87,8 @@ public class GradeCalculatorController {
     }
    
     /**
-     * this is the function is where the user enters the scene to enter the required quiz grades.
-     * @param enterQuizGradeEvent: the function is based on the button that says "Enter Quiz Grade" and the linked event opens the scene that has the text fields 
-     *and a the amount of quiz text fields are based on the amount selected in the choice box.
+     * This is the function which creates the new window for checking cmopulsory coding challenges
+     * @param enterQuizGradeEvent It is the function which opens the window for the compulsory quiz grade with the TextFields based off the number of quizzes entered in the choicebox.
      */
     @FXML
     void getQuizGrades(ActionEvent enterQuizGradeEvent) {
@@ -129,8 +128,8 @@ public class GradeCalculatorController {
     double averageOptionalQuizGrade = 0.0;
     /**
      * This function is used to calculate the average grade of the required quiz grades
-     * @param mainScene: after entering the grades and they are also valid then hitting the button would return the user to the main scene
-     * @param optionalquizGradeTextfields: this is where the grades for calculation come from
+     * @param mainScene: It is the main window which is displayed on pressing the DONE button
+     * @param optionalquizGradeTextfields: This is the textfield where the user enters grades to be validated
      */
     void calculateAverageOptionalQuizGrade(Scene mainScene,ArrayList<TextField> optionalquizGradeTextfields) {
     	//applicationStage.setScene(mainScene);
@@ -170,8 +169,8 @@ public class GradeCalculatorController {
     	}
     }
     /**
-     * this function creates a double array used to remove the lowest grade when there is more than 5 optional quiz grades.
-     * @param optionalquizGradeTextfields: Using the ArrayList of the optional grade text fields to generate a double array but parsing the array list and getting the values  
+     * This function creates an array which removes the lowest grades when there is more than 5 optional quiz grades.
+     * @param optionalquizGradeTextfields: It generates an ArrayList of the optional quiz grade textfields to get values  
      * @return array returned is then used in the gradeQuizSum() to remove then add up the remaining quiz grades that are then used for calculating the average quiz grade and weighted grade
      */
     Double[] createGradesArray(ArrayList<TextField> optionalquizGradeTextfields) {		
@@ -185,9 +184,9 @@ public class GradeCalculatorController {
      	return temp;
  	}
     /**
-     * this function removes the the lowest grade when there is more than 5 optional quiz grades then returns that value to calculateAverageOptionalQuizGrade() 
-     * @param optionalquizGradeTextfields used as a parameter in the createGradesArray to create the array used for the calculation
-     * @return returns the sum of all the remaining quiz grades added together and divided by 5.
+     * This method removes the the lowest grade when there is more than 5 optional quiz grades entered. 
+     * @param optionalquizGradeTextfields It is the parameter used to create the array used for the calculation
+     * @return Returns the average sum of all the remaining optional quiz grades. 
      */
 	private double gradeQuizSum(ArrayList<TextField> optionalquizGradeTextfields) {
 		
@@ -217,9 +216,8 @@ public class GradeCalculatorController {
 	}
 
 	/**
-	 * this is the function is where the user enters the scene to enter the optional quiz grades.
-	 * @param optionalQuizGradeEvent: the function is based on the button that says "Enter Quiz Grade" and the linked event opens the scene that has the text fields 
-     *and a the amount of quiz text fields are based on the amount selected in the choice box.
+	 * This is the optional quiz grade window where the user enters grades in textfields.
+	 * @param optionalQuizGradeEvent: This opens the window from the main scene to enter the grades of optional quiz based on the number of quizzes entered in the choicebox.
 	 */
 	@FXML
     void getoptionalQuizGrades(ActionEvent optionalQuizGradeEvent) {
@@ -254,8 +252,8 @@ public class GradeCalculatorController {
     }
     
     /**
-     * this is the main function that calls the other functions and calculates the weighted grades of the components 
-     * @param event: the event that is called when the user hits the calculate grade button that shows what the properly weighted grade is for the class based on the grades of the different components.
+     * This is the main function which calls the other functions to calculate the final grade.
+     * @param event: The event is the calculation of grades which happens on pressing the calculate grade button in the main window.
      */
     @FXML
     void calculateGrade(ActionEvent event) {

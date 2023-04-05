@@ -1,64 +1,73 @@
+
 package oosequence;
 
+
 import java.util.ArrayList;
-import java.util.Date;
+
 
 
 public class Itinerary {
+	
 	private String name;
-	private ArrayList<Flight> flights;
-	public Itinerary(String Name) {
-	   name=Name;
+	private ArrayList<TripComponent> flightlist=new ArrayList<TripComponent>();
+	
+	public Itinerary(String givenName) {
+		name=givenName;
+		flightlist=new ArrayList<TripComponent>();
 	}
-	public String getName() {
-		return name;
-	}
-	public ArrayList<Flight> getFlights() {
-		return flights;
-	}
-	public void addFlight(Flight m) {
-		ArrayList<Flight> temp= new ArrayList<Flight>();
-		if(flights==null)	{	
-			temp.add(m);
-			flights=temp;
+	
+	public String getName() {return name;}
+	
+	public ArrayList<TripComponent> getTripComponents() {return flightlist;}
+	
+	public void addTripComponent(TripComponent trip) {
+		if(flightlist.size()==0)	{		
+			flightlist.add(trip);
+			return;
 		}
-		if(flights.size()<6&&flights.get(0)!=m) {
-			flights.add(m);
-			for (int i = 0; i < flights.size(); i++) {
-				Date firstDate=flights.get(i).getDeparture();
-				for (int j = flights.size() - 1; j > i; j--) {
-		        	  Date lastDate=flights.get(j).getDeparture();
-		              if (firstDate.after(lastDate)) {
-		                  Flight tmp = flights.get(i);
-		                  flights.set(i,flights.get(j)) ;
-		                  flights.set(j,tmp);
-		              }
-		        }
-		   }	
-		}
-	}
-	public long getTotalLayover() {
-		long layover=0;
-		if(flights==null) return 0;
-
-		if(flights.size()>1) {
-			long firstArrival=0;
-			long  nextDeparture=0;
-			for (int i=0; i<flights.size();i++) {
-				firstArrival=flights.get(i).getArrival().getTime();  		
-				//for (int j =i+1;j<flightlist.size();j++) {
-				if(i+1<flights.size()) {	
-					nextDeparture=flights.get(i+1).getDeparture().getTime();		
-				
-					layover = layover+ ((nextDeparture-firstArrival)/60000);
+		
+		else {
+			for (int i = 0; i < flightlist.size(); i++) {
+				if(trip.isBefore(flightlist.get(0))) {
+					flightlist.add(0,trip);
+					return;
 				}
-			}
-			return layover;	
-				
+				if(flightlist.get(flightlist.size()-1).isBefore(trip)) {
+					flightlist.add(trip);
+					return;
+				}
+				if(flightlist.size()>1) {
+					if(!(flightlist.get(i).overlapsWith(trip))) {
+					if(!(trip.overlapsWith(flightlist.get(i+1)))) {
+						flightlist.add(i+1,trip);
+						return;
+					}
+				}
+				}
+			}	
 		}
-			
-			
-		return 0;
 	}
-
+	
+	
+	
+	public String toString() {
+		String temp="";
+		String[] strArr = new String[flightlist.size()];
+		for(int i=0;i<flightlist.size();i++) {
+				if(i<6) {
+				temp=+i+"\t"+flightlist.get(i).getStart().toString()+"\t"+flightlist.get(i).getEnd().toString()+"\n"; 
+				strArr[i]=temp;
+				}
+			
+		}
+		 StringBuffer sb = new StringBuffer();
+	      for(int i = 0; i < strArr.length; i++) {
+	         sb.append(strArr[i]);
+	      }
+		temp = sb.toString();
+		System.out.println(name+"\n"+temp);
+		return name+"\n"+temp;
+		
+	}
+	
 }

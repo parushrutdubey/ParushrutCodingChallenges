@@ -16,11 +16,11 @@ public class Flight extends TripComponent {
 		setEnd(End);
 		arrivalAirport=getArrivalAirport();
 	}
-	public Flight(Flight c) {
+	public Flight(Flight ch) {
 		// TODO Auto-generated constructor stub
-		super(c);
-		departureAirport=c.departureAirport;
-		arrivalAirport=c.arrivalAirport;
+		super(ch);
+		departureAirport=ch.departureAirport;
+		arrivalAirport=ch.arrivalAirport;
 	}
 	public void setArrivalAirport(String givenAirport) {
 	 	if (givenAirport==null)arrivalAirport="";	

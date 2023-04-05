@@ -243,12 +243,12 @@ public class ItineraryTest {
 		c.addTripComponent(m5);
 		c.addTripComponent(m6);
 
-		String expectedValue = "Test\n0\tYYC Fri Feb 01 10:00:00 MST 2019\tYVR Fri Feb 01 11:00:00 MST 2019\n" +
-				"1\tFri Feb 01 11:30:00 MST 2019\tFri Feb 01 12:45:00 MST 2019\n" +
-				"2\tYYC Fri Feb 01 14:50:00 MST 2019\tYVR Fri Feb 01 19:35:00 MST 2019\n" +
-				"3\tYYC Fri Feb 01 23:30:00 MST 2019\tYVR Sat Feb 02 02:59:00 MST 2019\n" +
-				"4\tSat Feb 02 04:40:00 MST 2019\tSat Feb 02 06:21:00 MST 2019\n" +
-				"5\tSat Feb 02 09:40:00 MST 2019\tSat Feb 02 13:21:00 MST 2019\n";
+		String expectedValue = "Test\n0\tYYC Fri Feb 01 10:00:00 UTC 2019\tYVR Fri Feb 01 11:00:00 UTC 2019\n" +
+				"1\tFri Feb 01 11:30:00 UTC 2019\tFri Feb 01 12:45:00 UTC 2019\n" +
+				"2\tYYC Fri Feb 01 14:50:00 UTC 2019\tYVR Fri Feb 01 19:35:00 UTC 2019\n" +
+				"3\tYYC Fri Feb 01 23:30:00 UTC 2019\tYVR Sat Feb 02 02:59:00 UTC 2019\n" +
+				"4\tSat Feb 02 04:40:00 UTC 2019\tSat Feb 02 06:21:00 UTC 2019\n" +
+				"5\tSat Feb 02 09:40:00 UTC 2019\tSat Feb 02 13:21:00 UTC 2019\n";
 		String actualValue = c.toString();
 		assertEquals("Testing toString with itinerary that contains Flight and TripComponent objects", expectedValue, actualValue);
 	}

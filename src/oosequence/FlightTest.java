@@ -68,8 +68,8 @@ public class FlightTest {
 		 
 		Flight c = new Flight(getDate(2018,11,28,10,20), getDate(2018,11,28,10,21), "LEX", "LCA");
 		Flight c1 = new Flight(c);
-		assertEquals("testing start date", "LEX Fri Dec 28 10:20:00 MST 2018", c1.getStart());
-		assertEquals("testing end date", "LCA Fri Dec 28 10:21:00 MST 2018", c1.getEnd());
+		assertEquals("testing start date", "LEX Fri Dec 28 10:20:00 UTC 2018", c1.getStart());
+		assertEquals("testing end date", "LCA Fri Dec 28 10:21:00 UTC 2018", c1.getEnd());
 		assertEquals("testing departure airport", "LEX", c1.getDepartureAirport());
 		assertEquals("testing arrival airport", "LCA", c1.getArrivalAirport());
 	}
@@ -80,8 +80,8 @@ public class FlightTest {
 		 
 		Flight c = new Flight(getDate(2018,11,31,23,35), getDate(2019,0,1,10,21), "CAN", "AMS");
 		Flight c1 = new Flight(c);
-		assertEquals("testing start date", "CAN Mon Dec 31 23:35:00 MST 2018", c1.getStart());
-		assertEquals("testing end date", "AMS Tue Jan 01 10:21:00 MST 2019", c1.getEnd());
+		assertEquals("testing start date", "CAN Mon Dec 31 23:35:00 UTC 2018", c1.getStart());
+		assertEquals("testing end date", "AMS Tue Jan 01 10:21:00 UTC 2019", c1.getEnd());
 		assertEquals("testing departure airport", "CAN", c1.getDepartureAirport());
 		assertEquals("testing arrival airport", "AMS", c1.getArrivalAirport());
 	}

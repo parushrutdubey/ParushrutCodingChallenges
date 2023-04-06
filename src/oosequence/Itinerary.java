@@ -13,25 +13,25 @@ public class Itinerary {
 	public String getName() {
 		return name;
 	}
-	public ArrayList<Flight> getFlights() {
+	public ArrayList<Flight> getFlightList() {
 		return flights;
 	}
 	public void addFlight(Flight m) {
 		ArrayList<Flight> temp= new ArrayList<Flight>();
 		if(flights==null)	{	
 			temp.add(m);
-			flights=temp;
+			this.flights=temp;
 		}
 		if(flights.size()<6&&flights.get(0)!=m) {
-			flights.add(m);
+			this.flights.add(m);
 			for (int i = 0; i < flights.size(); i++) {
 				Date firstDate=flights.get(i).getDeparture();
 				for (int j = flights.size() - 1; j > i; j--) {
 		        	  Date lastDate=flights.get(j).getDeparture();
 		              if (firstDate.after(lastDate)) {
 		                  Flight tmp = flights.get(i);
-		                  flights.set(i,flights.get(j)) ;
-		                  flights.set(j,tmp);
+		                  this.flights.set(i,flights.get(j));
+		                  this.flights.set(j,tmp);
 		              }
 		        }
 		   }	

@@ -8,11 +8,11 @@ public class Flight {
 
     public Flight(Date departure, Date arrival) {
     	 if (departure == null || arrival == null) {
-	            dep = departure;
-	            arr = arrival;
+	            this.dep = departure;	     
+	            this.arr = arrival;
 	        } else if (departure.before(arrival)) {
-	            dep = departure;
-	            arr = arrival;
+	            this.dep = departure;
+	            this.arr = arrival;
 	        } // else, do not set departure and arrival (they remain null)
 	    }
     
@@ -35,7 +35,7 @@ public class Flight {
     
 
     public Date getDeparture() {
-        return dep;
+        return dep == null ? null : new Date(dep.getTime());
     }
 
     public void setDeparture(Date departure) {
@@ -48,7 +48,7 @@ public class Flight {
 
 
     public Date getArrival() {
-        return arr;
+        return arr== null ? null : new Date(arr.getTime());
     }
 
     public void setArrival(Date arrival) {

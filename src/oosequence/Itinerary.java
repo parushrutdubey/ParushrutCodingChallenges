@@ -46,14 +46,14 @@ public class Itinerary {
 		if(flightlist==null) return 0;
 
 		if(flightlist.size()>1) {
-			long firstArrival=0;
-			long  nextDeparture=0;
+			long firstArr=0;
+			long  nextDep=0;
 			for (int i=0; i<flightlist.size();i++) {
-				firstArrival=flightlist.get(i).getArrival().getTime();  		
+				firstArr=flightlist.get(i).getArrival().getTime();  		
 				if(i+1<flightlist.size()) {	
-					nextDeparture=flightlist.get(i+1).getDeparture().getTime();		
+					nextDep=flightlist.get(i+1).getDeparture().getTime();		
 				
-					layover = layover+ ((nextDeparture-firstArrival)/60000);
+					layover = layover+ ((nextDep-firstArr)/60000);
 				}
 			}
 			return layover;	

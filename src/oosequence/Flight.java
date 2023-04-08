@@ -7,24 +7,24 @@ public class Flight {
 	private Date departure;
 	private Date arrival;
 
-	public Flight(Date givenDeparture, Date givenArrival) {
-		if (givenDeparture == null&& givenArrival == null) {
-			this.departure=givenDeparture;
-			this.arrival=givenArrival;
+	public Flight(Date givenDep, Date givenArr) {
+		if (givenDep == null&& givenArr == null) {
+			this.departure=givenDep;
+			this.arrival=givenArr;
 		}
 		
-		else if (givenDeparture == null&& givenArrival != null) {
-			this.departure = givenDeparture;
-			this.arrival = new Date(givenArrival.getTime());   
+		else if (givenDep == null&& givenArr != null) {
+			this.departure = givenDep;
+			this.arrival = new Date(givenArr.getTime());   
 		}
-		else if (givenDeparture != null&& givenArrival == null) {
-			this.departure = new Date(givenDeparture.getTime());
-			this.arrival = givenArrival;   
+		else if (givenDep != null&& givenArr == null) {
+			this.departure = new Date(givenDep.getTime());
+			this.arrival = givenArr;   
 		}
 		
-		else if (givenDeparture.before(givenArrival)) {
-			setDeparture(givenDeparture);
-			setArrival(givenArrival);
+		else if (givenDep.before(givenArr)) {
+			setDeparture(givenDep);
+			setArrival(givenArr);
 			
 			this.departure = getDeparture();
 			this.arrival = getArrival();
